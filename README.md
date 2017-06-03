@@ -1,2 +1,2 @@
-# SeleniumJenkinsPruebas
-SeleniumJenkinsPruebas
+# PracticaVerificacionSelenium
+Practica VerificacionSelenium
