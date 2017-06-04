@@ -1,19 +1,17 @@
-Feature: Enter Text
-    In order to enter text
+Feature: Select a publication date from the list
+    In order to view top used words for the selected date
     As a user
-    I want to write one sentence
+    I want to select a publication date
 
-    Scenario: Sentence "Hello World"
-        Given the textfield in blank
-        When I enter the sentence "Hello World"
-        Then I see "Hello World" in the textfield
+    Scenario: Date "Today"
+        Given the select box in the default state
+        When I select "Today" option
+        Then I see "Today" option selected
+	And I see words count section in blank
 
-    Scenario: Sentence "Hello Hello Hello Hello Hello"
-        Given the textfield in blank
-        When I enter the sentence "Hello Hello Hello"
-        Then I see "Hello Hello Hello" in the textfield
+    Scenario: Date "2017-05-28"
+        Given the select box in the default state
+        When I select "2017-05-28" option
+        Then I see "2017-05-28" option selected
+	And I see words count section in blank
 
-    Scenario: Sentence "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello"
-        Given the textfield in blank
-        When I enter the sentence "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello"
-        Then I see "Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hell" in the textfield

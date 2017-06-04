@@ -277,9 +277,3 @@ IPDL protocol error: Handler returned error code!
 1493923016446	geckodriver	INFO	Listening on 127.0.0.1:33199
 1493923017530	geckodriver::marionette	INFO	Starting browser /usr/lib/firefox/firefox.sh with args ["-marionette"]
 1493923020127	Marionette	INFO	Listening on port 36359
-1496520874289	geckodriver	INFO	Listening on 127.0.0.1:57433
-1496520875389	geckodriver::marionette	INFO	Starting browser /usr/lib/firefox/firefox.sh with args ["-marionette"]
-1496520885452	Marionette	INFO	Listening on port 46311
-1496525776756	geckodriver	INFO	Listening on 127.0.0.1:37397
-1496525777867	geckodriver::marionette	INFO	Starting browser /usr/lib/firefox/firefox.sh with args ["-marionette"]
-1496525781006	Marionette	INFO	Listening on port 37197

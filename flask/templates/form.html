@@ -1,16 +1,55 @@
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>		
+		<!-- For CSS Azul <link rel="stylesheet" type="text/css" href="static/css/style.css"> -->
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="static/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/cs-select.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/cs-skin-underline.css" />
+
+		<link rel="stylesheet" type="text/css" href="static/css/buttons/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/buttons/vicons-font.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/buttons/base.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/buttons/buttons.css" />
+		
 		<title>My Form</title>
 	</head>
-	<body>
-		<form action="/" method="POST">
-			<textarea id="textArea" name="textArea" maxlength="100">Enter your text here...</textarea>
-			<input id="execute" type="submit" value="Execute"></input>
-			<input id="reset" type="reset" value="Reset"></input>
-		</form>
-		<div>
-			<p id="result">{{ result }}</p>
-		</div>
+	<body class="color-2">
+			<form action="/processForm" method="POST">
+				<section>
+					<select class="cs-select cs-skin-underline" id="pub-date-select" name="publication-date">
+						<option value="today">Today</option>
+						{% for date in dates %}
+							<option name={{ date }} value={{ date }}>{{ date }}</option>
+						{% endfor %}
+					</select>
+				</section>
+				<button class="button button--rayen button--border-thin button--text-thick button--text-upper button--size-s" data-text="Execute" id="btnExecute" type="submit" value="Execute" style="display:block"><span>Execute</span></button>
+			</form>
+			<div id="result" style="margin-top:80px">
+				{% for doc in result %}
+					<p name="result-id" style="font-size:100px">{{ doc._id }}, {{ doc.total_number }}</p>
+				{% endfor %}		
+			</div>
+		<!-- For CSS Azul <script src="static/js/script1.js"></script> -->
+		<script src="static/js/classie.js"></script>
+		<script src="static/js/selectFx.js"></script>
+		<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el);
+				} );
+			})();
+		</script>
 	</body>
 
 </html>

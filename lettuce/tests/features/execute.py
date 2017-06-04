@@ -17,27 +17,36 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-@step('the sentence "([^"]*)"')
-def have_the_sentence(step, expected):
-	world.browser.get("http://127.0.0.1:5000")
-	text_field = world.browser.find_element_by_id("textArea")
-	text_field.send_keys(expected)
-	assert True, text_field.get_attribute('value') == expected
+from selenium.webdriver.common.by import By
 
-@step('I press in button execute')
+@step('the date "([^"]*)"')
+def have_the_date(step, expected):
+	world.browser.get("http://127.0.0.1:5000")
+	# Make dropdown list visible in order to select one of its option
+	world.browser.execute_script("document.getElementById('pub-date-select').setAttribute('style', 'display:block')");
+	select = Select(world.browser.find_element_by_id('pub-date-select'))
+	select.select_by_value(expected.lower())
+	selected_option = select.first_selected_option
+	assert True, selected_option.get_attribute('value') == expected.lower()
+
+@step('I press Execute button')
 def press_execute_button(step):
-	execute_button = world.browser.find_element_by_id("execute")
+	execute_button = world.browser.find_element_by_id("btnExecute")
 	execute_button.click()
 	assert True, execute_button.get_attribute('value') == True
 
-@step('Then I see the counter of words with "([^"]*)"')
-def have_the_sentence(step, expected):
-	result_field = world.browser.find_element_by_id("result")
-	assert True, result_field.get_attribute('value') == expected
+@step('I see words count section with "([^"]*)"')
+def see_words_count_section_with(step, expected):
+	WebDriverWait(world.browser, 10)
+	elements = world.browser.find_elements(By.NAME, 'result-id')
+	current_elements_list = []
+	for el in elements:
+		current_elements_list.append(el.text)
+	expected_elements_list = expected.split("-")
+	assert True, expected_elements_list == current_elements_list
 
-@step('I see the textfield in blank')
-def have_the_textfield_in_blank(step):
-	world.browser.get("http://127.0.0.1:5000")
-	text_field = world.browser.find_element_by_id("textArea")
-	assert True, text_field.get_attribute('value') == ""
-
+@step('I see "([^"]*)" option selected')
+def see_default_option_selected(step, expected):
+	select = Select(world.browser.find_element_by_id("pub-date-select"))
+	selected_option = select.first_selected_option
+    	assert True, selected_option.tget_attribute('value') == expected.lower()
